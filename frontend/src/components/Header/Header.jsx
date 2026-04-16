@@ -1,0 +1,83 @@
+import React from "react";
+import classes from "./Header.module.css";
+
+import { SlLocationPin } from "react-icons/sl";
+import { CiSearch } from "react-icons/ci";
+import { BsCart } from "react-icons/bs";
+
+const Header = () => {
+  return (
+    <>
+      <section>
+        <div className={classes.header_container}>
+          {/*ECOMMERCE LOGO */}
+          <div className={classes.logo_container}>
+            <a href="/">
+              <img
+                src="https://i.pinimg.com/736x/90/fc/86/90fc864285261468ec839a2d49fbfc93.jpg"
+                alt="ecommerce logo"
+              />
+            </a>
+            {/*Delivery */}
+            <div className={classes.delivery}>
+              <span>
+                {/*icon */}
+                <SlLocationPin />
+              </span>
+              <div>
+                <p>Delivered to</p>
+                <span>Ethiopia</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={classes.search}>
+            {/*search */}
+            <select name="" id="">
+              <option value="">All</option>
+            </select>
+            <input type="text" placeholder="search product" />
+            {/*icon */}
+            <CiSearch size={48} />
+          </div>
+
+          {/*right */}
+          <div className={classes.order_container}>
+            <a href="" className={classes.language}>
+              <img
+                src="https://i.pinimg.com/1200x/b2/4e/2e/b24e2ebe58598fd2898078106c231c56.jpg"
+                alt="language option"
+              />
+              <select>
+                <option value="">EN</option>
+              </select>
+            </a>
+
+            {/*three components */}
+            <a href="">
+              <div>
+                <p>Sign In</p>
+                <span>Account & Lists</span>
+              </div>
+            </a>
+
+            {/*orders */}
+            <a href="">
+              <p>returns</p>
+              <span>& orders</span>
+            </a>
+
+            {/*cart */}
+            <a href="" className={classes.cart}>
+              {/*icon */}
+              <BsCart size={35} />
+              <span>0</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Header;
