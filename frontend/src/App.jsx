@@ -1,8 +1,11 @@
+import Header from "./components/Header/Header";
+
 const App = () => {
   return (
-    <div>FIRST SETUP</div>
-
-      );
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default App;
