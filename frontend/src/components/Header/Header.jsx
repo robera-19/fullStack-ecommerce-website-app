@@ -14,7 +14,7 @@ const Header = () => {
           <div className={classes.logo_container}>
             <a href="/">
               <img
-                src="https://i.pinimg.com/736x/1a/87/58/1a8758065e4b3f2c667df9b690b4c586.jpg"
+                src="https://i.pinimg.com/1200x/47/b7/bd/47b7bdac4285ee24654ca7d68cf06351.jpg"
                 alt="ecommerce logo"
               />
             </a>
