@@ -3,10 +3,11 @@ import Rating from "@mui/material/Rating";
 import CurrencyFormat from "../CurrencyFormat/CurrencyFormat";
 import classes from "./Product.module.css";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 function ProductCard({ product }) {
   if (!product) {
-    return <p>Loading...</p>; // or null
+    return <Loader />;
   }
 
   const { image, title, id, rating, price } = product;
