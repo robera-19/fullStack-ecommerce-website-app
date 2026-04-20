@@ -16,6 +16,12 @@
     padding: 0 15px;
 }
 
+.fixed {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
 /* LEFT SECTION */
 .logo_container {
     gap: 10px;
