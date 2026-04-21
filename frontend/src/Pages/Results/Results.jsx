@@ -36,7 +36,14 @@ const Results = () => {
         ) : (
           <div className={classes.products_container}>
             {results?.map((product) => {
-              return <ProductCard key={product.id} product={product} />;
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  RenderDesc={false}
+                  renderAdd={true}
+                />
+              );
             })}
           </div>
         )}
