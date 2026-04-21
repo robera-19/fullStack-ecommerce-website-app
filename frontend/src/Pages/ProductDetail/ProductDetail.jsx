@@ -34,6 +34,7 @@ const ProductDetail = () => {
           <ProductCard product={product}
           flex={true}
           RenderDesc={true}
+          renderAdd={true}
           />
         </Layout>
       )}
