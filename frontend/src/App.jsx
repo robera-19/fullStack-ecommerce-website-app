@@ -13,10 +13,9 @@ const App = () => {
         // console.log(authUser);
         dispatch({
           type: Type.SET_USER,
-          user: authUser
-        })
-      }
-      else{
+          user: authUser,
+        });
+      } else {
         dispatch({
           type: Type.SET_USER,
           user: null,
