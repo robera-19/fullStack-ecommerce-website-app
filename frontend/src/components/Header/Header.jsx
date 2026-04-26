@@ -62,13 +62,12 @@ const Header = () => {
                 <option value="">EN</option>
               </select>
             </Link>
-
             {/*three components */}
             <Link to={!user && "/auth"}>
               <div>
                 {user ? (
                   <>
-                    <p>Hello {user.email?.split("@")[0]}</p>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
                     <span onClick={() => auth.signOut()}>Sign Out</span>
                   </>
                 ) : (
@@ -85,7 +84,6 @@ const Header = () => {
               <p>Returns</p>
               <span>& orders</span>
             </Link>
-
             {/*cart */}
             <Link to="/cart" className={classes.cart}>
               {/*icon */}
