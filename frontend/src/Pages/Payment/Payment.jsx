@@ -9,9 +9,10 @@ import { axiosInstance } from "../../API/axios";
 import { ClipLoader } from "react-spinners";
 import { db } from "../../Utility/firebase";
 import { useNavigate } from "react-router-dom";
+import { Type } from "../../Utility/action.type";
 
 const Payment = () => {
-  const [{ user, basket }] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
   console.log(user);
 
   const totalItem = basket?.reduce((amount, item) => {
@@ -30,12 +31,21 @@ const Payment = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    console.log(e);
     e?.error?.message ? setCardError(e?.error?.message) : setCardError("");
   };
 
   const handlePayment = async (e) => {
     e.preventDefault();
+
+    if (!user || !user.uid) {
+      setCardError("Please sign in to make a payment");
+      return;
+    }
+
+    if (!basket || basket.length === 0) {
+      setCardError("Your basket is empty");
+      return;
+    }
 
     try {
       setProcessing(true);
@@ -44,7 +54,6 @@ const Payment = () => {
         method: "POST",
         url: `/payment/create?total=${total * 100}`,
       });
-
       const clientSecret = response.data?.clientSecret;
 
       //2 client side (react side confirmation)
@@ -57,8 +66,7 @@ const Payment = () => {
           },
         },
       );
-      // console.log(paymentIntent);
-      //3 after the confirmation --->order firestore database save, clear basket
+      setProcessing(false);
 
       await db
         .collection("users")
@@ -71,8 +79,16 @@ const Payment = () => {
           created: paymentIntent.created,
         });
 
+      //empty the basket after order is placed
+      dispatch({
+        type: Type.EMPTY_BASKET,
+      });
+
       setProcessing(false);
-      navigate("/orders", { state: { msg: "you have placed new orders" } });
+
+      navigate("/orders", {
+        state: { msg: "You have placed a new order" },
+      });
     } catch (error) {
       console.log(error);
       setProcessing(false);
@@ -103,7 +119,7 @@ const Payment = () => {
           <h3>Review Items and Delivery</h3>
           <div>
             {basket?.map((item) => (
-              <ProductCard product={item} flex={true} />
+              <ProductCard key={item.id} product={item} flex={true} />
             ))}
           </div>
         </div>
